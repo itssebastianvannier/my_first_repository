@@ -1,0 +1,83 @@
+select employee.emp_id, employee.emp_name, department.dept_name, employee.basic_salary
+from employee inner join department on
+employee.dept_id = department.dept_id order by emp_id;
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+declare
+id number(3);
+empname char(10);
+deptname char(10);
+basicsalary char(10);
+hra number(2);
+ta number(2);
+da number(2);
+totalsalary number(6);
+begin
+id :=1;
+while (id<6)
+loop
+	select employee.emp_id, employee.emp_name, department.dept_name, employee.basic_salary
+	into id,empname, deptname, basicsalary
+	from employee inner join department on
+	employee.dept_id = department.dept_id where emp_id = id;
+	if (basicsalary>10000) then
+		hra := 20;
+		ta := 10;
+		da := 25;
+		totalsalary := basicsalary + ((basicsalary*hra)/100) + ((basicsalary*ta)/100) + ((basicsalary*da)/100);
+		insert into salaryslip values (id ,id , empname, deptname,basicsalary, hra,ta,da,totalsalary);
+	else 
+		hra := 10;
+		ta := 5;
+		da := 15;
+		totalsalary := basicsalary + ((basicsalary*hra)/100) + ((basicsalary*ta)/100) + ((basicsalary*da)/100);
+		insert into salaryslip values (id ,id , empname, deptname,basicsalary, hra,ta,da,totalsalary);
+	end if;
+id := id + 1;
+end loop;
+end;
+/
+	
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+/*
+	if (basic_salary >10000)
+		-hra 20%
+		-ta 10%
+		-da 25%
+	else 
+		-hra 10%
+		-ta 5%
+		-da 15%
+*/
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+create table salaryslip
+(salary_id number(3),
+emp_id number(3),
+emp_name char(10),
+dept_name char(10),
+basic_salary number(5),
+hra number(2),
+ta number(2),
+da number(2),
+total_salary number(6));
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+insert all
+into employee values (1,'John',101,12000)
+into employee values (2,'David',102,16000)
+into employee values (3,'Michael',102,9000)
+into employee values (4,'Gary',103,18000)
+into employee values (5,'Rick',101,6000)
+select * from dual;
+
+insert all
+into department values (101,'Finance')
+into department values (102,'Marketing')
+into department values (103,'Sales')
+select * from dual;
