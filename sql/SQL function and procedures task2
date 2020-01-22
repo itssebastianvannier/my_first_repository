@@ -1,0 +1,11 @@
+Create table as follows:
+
+Customer (custid,custname,city)
+Product (itemid,itemname,price)
+Order(orderid,custid,itemid, quantity,totalamount)
+
+Write pl SQL block to make an invoice where customer of ordering the product.
+
+Make two procedures
+1 display the list of order placed by the customer (history)
+2 
