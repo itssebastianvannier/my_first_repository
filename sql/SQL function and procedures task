@@ -1,0 +1,13 @@
+Create tables as follows:
+
+Employee (empid,empname,empdept)
+
+Department (deptid,deptname)
+
+Department (empid,salary)
+
+Allowance (empid,hra(20),ta(10),da(25))
+
+Write plsql block to display the whole salary slip of employee.
+Use function and procedures for fetching records by ID as input.
+
