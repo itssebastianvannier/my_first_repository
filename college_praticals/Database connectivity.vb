@@ -47,6 +47,12 @@ Public Class Form1
         End If
         inputDOB.Value = ds.Tables("table1").Rows(0)("DOB").ToString
         'cmbHobbies.Text = ds.Tables("tbstudent").Rows(0)("Hobbies").ToString
-
+    
+    End Sub
+    
+     Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+        cmd = New OleDbCommand("delete from table1 where [Roll No] = " + inputRollNo.Text + "", conn)
+        cmd.ExecuteNonQuery()
+        MsgBox("The record has been Deleted successfully")
     End Sub
 End Class
