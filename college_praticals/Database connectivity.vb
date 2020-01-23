@@ -46,8 +46,7 @@ Public Class Form1
             selectFemale.Checked = True
         End If
         inputDOB.Value = ds.Tables("table1").Rows(0)("DOB").ToString
-        'cmbHobbies.Text = ds.Tables("tbstudent").Rows(0)("Hobbies").ToString
-    
+            
     End Sub
     
      Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
